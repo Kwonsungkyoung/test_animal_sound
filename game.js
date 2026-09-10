@@ -90,8 +90,8 @@
   }
 
   function resize() {
-    W = window.innerWidth;
-    H = window.innerHeight;
+    W = container.clientWidth || window.innerWidth;
+    H = container.clientHeight || window.innerHeight;
     canvas.width = W * DPR;
     canvas.height = H * DPR;
     canvas.style.width = W + "px";
@@ -177,7 +177,7 @@
   });
 
   function bindBtn(el, fn) {
-    el.addEventListener("pointerdown", (e) => { e.preventDefault(); fn(); });
+    el.addEventListener("pointerdown", (e) => { e.preventDefault(); e.stopPropagation(); fn(); });
   }
   bindBtn(btnLeft, () => moveLane(-1));
   bindBtn(btnRight, () => moveLane(1));
