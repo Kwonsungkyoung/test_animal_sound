@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>달려서 가족 만나기</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game-container">
+  <canvas id="game-canvas"></canvas>
+
+  <div id="hud">
+    <div id="distance-hud">0m</div>
+    <div id="obesity-wrap">
+      <div id="obesity-label">체형</div>
+      <div id="obesity-bar-bg"><div id="obesity-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <div id="milestone-banner"></div>
+  <div id="toast"></div>
+
+  <div id="controls">
+    <button id="btn-left" class="ctrl-btn" aria-label="왼쪽 차선">◀</button>
+    <div id="controls-mid">
+      <button id="btn-jump" class="ctrl-btn" aria-label="점프">▲</button>
+      <button id="btn-slide" class="ctrl-btn" aria-label="슬라이드">▼</button>
+    </div>
+    <button id="btn-right" class="ctrl-btn" aria-label="오른쪽 차선">▶</button>
+  </div>
+
+  <div id="screen-start" class="screen">
+    <h1>달려서<br>가족 만나기</h1>
+    <p class="desc">
+      건강한 음식을 먹으면 날씬하고 빨라지고,<br>
+      단 음식을 많이 먹으면 뚱뚱하고 느려져요!<br>
+      끝까지 달려서 동생, 아빠, 엄마를 모두 만나보세요.
+    </p>
+    <div class="howto">
+      <div>◀ ▶ 좌우 스와이프: 차선 이동</div>
+      <div>▲ 위로 스와이프: 점프 (장애물 뛰어넘기)</div>
+      <div>▼ 아래로 스와이프: 슬라이드 (장애물 피하기)</div>
+    </div>
+    <button id="btn-start" class="primary-btn">시작하기</button>
+  </div>
+
+  <div id="screen-gameover" class="screen hidden">
+    <h1>게임 오버</h1>
+    <p id="gameover-reason"></p>
+    <p id="gameover-distance" class="distance-line"></p>
+    <button id="btn-retry-over" class="primary-btn">다시 달리기</button>
+  </div>
+
+  <div id="screen-clear" class="screen hidden">
+    <h1>해피엔딩!</h1>
+    <p>동생, 아빠, 엄마와 함께<br>온 가족이 다시 모였어요!</p>
+    <p id="clear-distance" class="distance-line"></p>
+    <button id="btn-retry-clear" class="primary-btn">다시 달리기</button>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>

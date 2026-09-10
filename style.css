@@ -1,0 +1,201 @@
+:root {
+  --accent-orange: #ff8c42;
+  --accent-red: #e6483a;
+  --accent-green: #4caf7d;
+  --accent-blue: #4a90d9;
+  --panel-bg: rgba(255, 255, 255, 0.92);
+  --text-dark: #4a3b2a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  touch-action: none;
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+#game-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  touch-action: none;
+}
+
+#hud {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: calc(10px + env(safe-area-inset-top)) 14px 10px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+#distance-hud {
+  background: var(--panel-bg);
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#obesity-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+#obesity-label {
+  font-size: 11px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  font-weight: 700;
+}
+
+#obesity-bar-bg {
+  width: 120px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+#obesity-bar-fill {
+  height: 100%;
+  width: 44%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #6fd17a, #ffce54, #e6483a);
+  transition: width 0.25s ease;
+}
+
+#milestone-banner, #toast {
+  position: absolute;
+  left: 50%;
+  top: 24%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: var(--panel-bg);
+  color: var(--text-dark);
+  padding: 14px 26px;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 800;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#milestone-banner.show, #toast.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#toast {
+  top: 40%;
+  font-size: 16px;
+  padding: 8px 18px;
+}
+
+.hidden { display: none !important; }
+
+#controls {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px calc(14px + env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) calc(14px + env(safe-area-inset-left));
+  z-index: 10;
+}
+
+#controls-mid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ctrl-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-dark);
+  font-size: 22px;
+  font-weight: 800;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ctrl-btn:active { transform: scale(0.9); background: #fff; }
+
+.screen {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(191, 232, 255, 0.96), rgba(234, 248, 255, 0.98));
+  color: var(--text-dark);
+}
+
+.screen h1 { margin: 0; font-size: 32px; line-height: 1.3; }
+.screen .desc { font-size: 14px; line-height: 1.7; margin: 0; }
+
+.howto {
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 10px 16px;
+  line-height: 1.9;
+}
+
+.distance-line { font-size: 16px; font-weight: 700; }
+
+.primary-btn {
+  margin-top: 6px;
+  padding: 14px 34px;
+  font-size: 18px;
+  font-weight: 800;
+  border: none;
+  border-radius: 999px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent-orange), var(--accent-red));
+  box-shadow: 0 6px 14px rgba(230, 72, 58, 0.35);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.primary-btn:active { transform: scale(0.96); }
+
+@media (max-width: 360px) {
+  .ctrl-btn { width: 50px; height: 50px; font-size: 18px; }
+  .screen h1 { font-size: 26px; }
+}
