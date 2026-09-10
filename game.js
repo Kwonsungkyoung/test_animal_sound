@@ -6,6 +6,7 @@
   const canvas = document.getElementById("game-canvas");
   const ctx = canvas.getContext("2d");
   const distanceHud = document.getElementById("distance-hud");
+  const hpRow = document.getElementById("hp-row");
   const obesityFill = document.getElementById("obesity-bar-fill");
   const milestoneBanner = document.getElementById("milestone-banner");
   const toastEl = document.getElementById("toast");
@@ -29,6 +30,8 @@
     obesityMin: 1,
     obesityMax: 10,
     obesityStart: 5,
+    hpMax: 3,
+    hitInvulnDuration: 1.2,
     baseSpeed: 230, // px/s at speed multiplier 1
     metersPerSecBase: 7.5,
     milestones: [
@@ -111,6 +114,7 @@
   let spawnTimer = 0.6;
   let nextMilestoneIndex = 0;
   let scrollY = 0;
+  let hitFlashT = 0;
 
   function resetPlayer() {
     player = {
@@ -118,6 +122,8 @@
       x: LANE_X[1],
       y: PLAYER_Y,
       obesity: CONFIG.obesityStart,
+      hp: CONFIG.hpMax,
+      invulnT: 0,
       jumping: false, jumpT: 0,
       sliding: false, slideT: 0,
       legPhase: 0,
@@ -129,6 +135,17 @@
     obesityFill.style.width = pct + "%";
   }
 
+  function renderHP() {
+    hpRow.innerHTML = "";
+    for (let i = 0; i < CONFIG.hpMax; i++) {
+      const pip = document.createElement("div");
+      pip.className = "hp-pip" + (i >= player.hp ? " lost" : "");
+      hpRow.appendChild(pip);
+    }
+  }
+
+  function triggerHitFlash() { hitFlashT = 0.3; }
+
   function startGame() {
     resetPlayer();
     entities = [];
@@ -138,7 +155,9 @@
     spawnTimer = 0.6;
     nextMilestoneIndex = 0;
     scrollY = 0;
+    hitFlashT = 0;
     updateObesityBar();
+    renderHP();
     distanceHud.textContent = "0m";
     screenStart.classList.add("hidden");
     screenGameover.classList.add("hidden");
@@ -317,7 +336,7 @@
     state = "gameover";
     gameoverReasonEl.textContent = reason === "fat"
       ? "너무 뚱뚱해져서 더 뛸 수 없어요!"
-      : "장애물에 부딪혔어요!";
+      : "장애물에 너무 많이 부딪혀서 더 이상 뛸 수 없어요!";
     gameoverDistanceEl.textContent = Math.floor(distance) + "m까지 달렸어요";
     screenGameover.classList.remove("hidden");
   }
@@ -343,6 +362,8 @@
       player.slideT += dt;
       if (player.slideT >= CONFIG.slideDuration) { player.sliding = false; player.slideT = 0; }
     }
+    if (player.invulnT > 0) player.invulnT = Math.max(0, player.invulnT - dt);
+    if (hitFlashT > 0) hitFlashT = Math.max(0, hitFlashT - dt);
 
     spawnTimer -= dt;
     if (spawnTimer <= 0) {
@@ -370,10 +391,17 @@
           continue;
         } else {
           const avoided = (en.avoid === "jump" && player.jumping) || (en.avoid === "slide" && player.sliding);
-          if (!avoided) {
+          if (!avoided && player.invulnT <= 0) {
+            player.hp -= 1;
+            player.invulnT = CONFIG.hitInvulnDuration;
+            renderHP();
             sfx.hit();
-            endGame("hit");
-            return;
+            triggerHitFlash();
+            if (player.hp <= 0) {
+              endGame("hp");
+              return;
+            }
+            showToast("아야! 장애물에 부딪혔어요", "#c23b2e");
           }
         }
       }
@@ -507,7 +535,10 @@
     ctx.fillStyle = "rgba(0,0,0,0.18)"; ctx.fill();
     ctx.translate(0, jumpOffset);
     ctx.scale(1, slideScaleY);
+    const blinking = player.invulnT > 0 && Math.floor(player.invulnT * 10) % 2 === 0;
+    ctx.globalAlpha = blinking ? 0.35 : 1;
     drawCharacter({ bodyScale, legSwing, topColor: "#ff8c42", bottomColor: "#e6483a" });
+    ctx.globalAlpha = 1;
     ctx.restore();
   }
 
@@ -638,6 +669,10 @@
     entities.forEach(drawEntity);
     joinedFamily.forEach(drawFamilyMember);
     if (player) drawPlayer();
+    if (hitFlashT > 0) {
+      ctx.fillStyle = `rgba(230,72,58,${(hitFlashT / 0.3) * 0.35})`;
+      ctx.fillRect(0, 0, W, H);
+    }
   }
 
   // ---------- Main loop ----------
@@ -653,5 +688,6 @@
   resize();
   resetPlayer();
   updateObesityBar();
+  renderHP();
   requestAnimationFrame(loop);
 })();

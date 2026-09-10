@@ -11,7 +11,10 @@
   <canvas id="game-canvas"></canvas>
 
   <div id="hud">
-    <div id="distance-hud">0m</div>
+    <div class="hud-left">
+      <div id="distance-hud">0m</div>
+      <div id="hp-row"></div>
+    </div>
     <div id="obesity-wrap">
       <div id="obesity-label">체형</div>
       <div id="obesity-bar-bg"><div id="obesity-bar-fill"></div></div>
@@ -41,6 +44,7 @@
       <div>◀ ▶ 좌우 스와이프: 차선 이동</div>
       <div>▲ 위로 스와이프: 점프 (장애물 뛰어넘기)</div>
       <div>▼ 아래로 스와이프: 슬라이드 (장애물 피하기)</div>
+      <div>장애물에 부딪히면 체력이 줄어요 (체력 3칸)</div>
     </div>
     <button id="btn-start" class="primary-btn">시작하기</button>
   </div>
