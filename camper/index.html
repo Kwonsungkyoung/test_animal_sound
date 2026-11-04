@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>길벗 캠핑카 | 캠핑카 렌트</title>
+<meta name="description" content="침대와 부엌을 갖춘 캠핑카를 날짜만 골라 빌리는 길벗 캠핑카입니다.">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@600&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Song+Myung&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+
+<header class="mast-nav">
+  <div class="container">
+    <ul class="mast-nav__start">
+      <li><a href="#fleet">차량</a></li>
+      <li><a href="#kit">차에 실린 것</a></li>
+    </ul>
+    <a class="wordmark" href="#main" aria-label="길벗 캠핑카 처음으로">길벗 캠핑카</a>
+    <ul class="mast-nav__end">
+      <li><a href="#book">예약하기</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero__text">
+        <h1 id="hero-title">침대를 싣고 떠나는 길</h1>
+        <p class="lead">잠자리와 부엌을 갖춘 캠핑카를 날짜만 골라 빌리세요.</p>
+        <form class="book" id="book" data-endpoint="" novalidate aria-label="예약 가능한 날짜 확인">
+          <div class="book__grid">
+            <div class="field">
+              <label for="pickup">받는 날</label>
+              <input id="pickup" name="pickup" type="date" required aria-describedby="book-help">
+            </div>
+            <div class="field">
+              <label for="return">돌려주는 날</label>
+              <input id="return" name="return" type="date" required aria-describedby="book-help">
+            </div>
+            <div class="field">
+              <label for="van">차량</label>
+              <select id="van" name="van" required>
+                <option value="van2">2인 밴</option>
+                <option value="van4">4인 가족형</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="people">인원</label>
+              <select id="people" name="people">
+                <option>1명</option>
+                <option selected>2명</option>
+                <option>3명</option>
+                <option>4명</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn--primary" type="submit">빈 날짜 확인</button>
+          <p class="book__help" id="book-help" aria-live="polite"></p>
+        </form>
+      </div>
+      <figure class="hero__photo" data-slot="hero" data-alt="길 위에 선 우리 캠핑카, 뒤로 산이나 바다가 보이는 가로 사진">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Snostskali_Valley%2C_Mountain_road%2C_Khevi%2C_Georgia.jpg/1920px-Snostskali_Valley%2C_Mountain_road%2C_Khevi%2C_Georgia.jpg" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Snostskali_Valley%2C_Mountain_road%2C_Khevi%2C_Georgia.jpg/960px-Snostskali_Valley%2C_Mountain_road%2C_Khevi%2C_Georgia.jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Snostskali_Valley%2C_Mountain_road%2C_Khevi%2C_Georgia.jpg/1280px-Snostskali_Valley%2C_Mountain_road%2C_Khevi%2C_Georgia.jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Snostskali_Valley%2C_Mountain_road%2C_Khevi%2C_Georgia.jpg/1920px-Snostskali_Valley%2C_Mountain_road%2C_Khevi%2C_Georgia.jpg 1920w" sizes="(min-width: 60rem) 55vw, 100vw" width="4912" height="3264" alt="구름 아래 초록 계곡으로 곧게 뻗은 빈 도로" style="object-position: 50% 60%" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <section class="bleed" aria-label="호숫가 풍경">
+    <figure class="photo" data-slot="photo-1" data-alt="캠핑카를 세워 둔 호숫가나 숲의 아침 풍경, 아주 넓은 가로 사진">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Herbert_Lake_beim_Icefields_Parkway.jpg/1920px-Herbert_Lake_beim_Icefields_Parkway.jpg" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Herbert_Lake_beim_Icefields_Parkway.jpg/960px-Herbert_Lake_beim_Icefields_Parkway.jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Herbert_Lake_beim_Icefields_Parkway.jpg/1280px-Herbert_Lake_beim_Icefields_Parkway.jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Herbert_Lake_beim_Icefields_Parkway.jpg/1920px-Herbert_Lake_beim_Icefields_Parkway.jpg 1920w" sizes="100vw" width="3239" height="2160" alt="소나무와 눈 덮인 봉우리가 비치는 아침 안개 낀 호수" loading="lazy">
+    </figure>
+  </section>
+
+  <section class="fleet fibre" id="fleet" aria-labelledby="fleet-title">
+    <div class="container">
+      <div class="fleet__head">
+        <h2 id="fleet-title">두 가지 차가 있습니다</h2>
+        <div class="tabs" role="tablist" aria-label="차량">
+          <button type="button" role="tab" id="tab-van2" aria-controls="panel-van2" aria-selected="true">2인 밴</button>
+          <button type="button" role="tab" id="tab-van4" aria-controls="panel-van4" aria-selected="false" tabindex="-1">4인 가족형</button>
+        </div>
+      </div>
+      <div class="van" role="tabpanel" id="panel-van2" aria-labelledby="tab-van2">
+        <div>
+          <h3 class="van__name">2인 밴</h3>
+          <p class="van__line">둘이 눕는 침대와 작은 부엌.</p>
+        </div>
+        <dl class="specs">
+          <div><dt>잠자리</dt><dd>2명</dd></div>
+          <div><dt>침대</dt><dd>더블 침대 1개</dd></div>
+          <div><dt>부엌</dt><dd>싱크대, 2구 버너, 냉장고</dd></div>
+          <div><dt>1박 요금</dt><dd><span class="fill" data-fill="price">요금표 준비 중</span></dd></div>
+        </dl>
+      </div>
+      <div class="van" role="tabpanel" id="panel-van4" aria-labelledby="tab-van4" hidden>
+        <div>
+          <h3 class="van__name">4인 가족형</h3>
+          <p class="van__line">아이 둘까지 함께 자는 2층 침대.</p>
+        </div>
+        <dl class="specs">
+          <div><dt>잠자리</dt><dd>4명</dd></div>
+          <div><dt>침대</dt><dd>더블 침대 1개, 2층 침대 1개</dd></div>
+          <div><dt>부엌</dt><dd>싱크대, 2구 버너, 냉장고</dd></div>
+          <div><dt>화장실</dt><dd>간이 화장실</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="first" aria-labelledby="first-title">
+    <div class="container">
+      <figure class="photo" data-slot="photo-2" data-alt="캠핑카 옆에 의자와 테이블을 펴 둔 저녁 장면">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Zagedan_Ridge%2C_Camping_tent%2C_Caucasus_Mountains.jpg/1280px-Zagedan_Ridge%2C_Camping_tent%2C_Caucasus_Mountains.jpg" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Zagedan_Ridge%2C_Camping_tent%2C_Caucasus_Mountains.jpg/960px-Zagedan_Ridge%2C_Camping_tent%2C_Caucasus_Mountains.jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Zagedan_Ridge%2C_Camping_tent%2C_Caucasus_Mountains.jpg/1280px-Zagedan_Ridge%2C_Camping_tent%2C_Caucasus_Mountains.jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Zagedan_Ridge%2C_Camping_tent%2C_Caucasus_Mountains.jpg/1920px-Zagedan_Ridge%2C_Camping_tent%2C_Caucasus_Mountains.jpg 1920w" sizes="(min-width: 60rem) 55vw, 100vw" width="4912" height="3264" alt="해 질 녘 풀 언덕에 친 작은 텐트" style="object-position: 45% 55%" loading="lazy">
+      </figure>
+      <div>
+        <h2 id="first-title">처음 타는 분께</h2>
+        <ol class="steps">
+          <li><div><h3>날짜와 차를 고릅니다</h3><p>위의 예약 칸에서 빈 날짜를 확인하세요.</p></div></li>
+          <li><div><h3>차 앞에서 함께 봅니다</h3><p>받는 날, 물과 전기, 침대 펴는 법을 직접 보여 드립니다.</p></div></li>
+          <li><div><h3>빌린 곳에 돌려줍니다</h3><p>물탱크를 비우고 열쇠를 건네면 끝입니다.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="kit" id="kit" aria-labelledby="kit-title">
+    <div class="container">
+      <h2 id="kit-title">차에 실려 있는 것</h2>
+      <table class="ledger">
+        <thead><tr><th scope="col">물품</th><th scope="col">2인 밴</th><th scope="col">4인 가족형</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><span>1</span>침구</th><td data-label="2인 밴">2인분</td><td data-label="4인 가족형">4인분</td></tr>
+          <tr><th scope="row"><span>2</span>접이식 의자와 테이블</th><td data-label="2인 밴">의자 2, 테이블 1</td><td data-label="4인 가족형">의자 4, 테이블 1</td></tr>
+          <tr><th scope="row"><span>3</span>냄비, 팬, 식기</th><td data-label="2인 밴">2인분</td><td data-label="4인 가족형">4인분</td></tr>
+          <tr><th scope="row"><span>4</span>외부 전원 케이블</th><td data-label="2인 밴">실려 있음</td><td data-label="4인 가족형">실려 있음</td></tr>
+          <tr><th scope="row"><span>5</span>자전거 거치대</th><td data-label="2인 밴">요청 시</td><td data-label="4인 가족형">요청 시</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="pickup" aria-labelledby="pickup-title">
+    <div class="container">
+      <div>
+        <h2 id="pickup-title">차는 여기서 받습니다</h2>
+        <a class="btn" href="#book">날짜 고르러 가기</a>
+      </div>
+      <dl class="pickup__rows">
+        <div><dt>받는 곳</dt><dd><span class="fill" data-fill="address">주소 준비 중</span></dd></div>
+        <div><dt>받는 시간</dt><dd>예약할 때 함께 정합니다.</dd></div>
+        <div><dt>돌려주는 곳</dt><dd>받은 곳과 같습니다.</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <p class="foot__mark">길벗 캠핑카</p>
+    <div class="foot__row">
+      <ul>
+        <li><a href="#fleet">차량</a></li>
+        <li><a href="#kit">차에 실린 것</a></li>
+        <li><a href="#book">예약하기</a></li>
+      </ul>
+      <small>© 2026 길벗 캠핑카</small>
+    </div>
+    <p data-credits>사진: <a href="https://commons.wikimedia.org/wiki/File:Snostskali_Valley,_Mountain_road,_Khevi,_Georgia.jpg">Vyacheslav Argenberg</a> (CC BY 4.0), <a href="https://commons.wikimedia.org/wiki/File:Herbert_Lake_beim_Icefields_Parkway.jpg">Florian Fuchs</a> (CC BY 3.0), <a href="https://commons.wikimedia.org/wiki/File:Zagedan_Ridge,_Camping_tent,_Caucasus_Mountains.jpg">Vyacheslav Argenberg</a> (CC BY 4.0), Wikimedia Commons</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>window.hallmarkSlots = (m) => { for (const [k, v] of Object.entries(m)) { const s = document.querySelector(`[data-slot="${k}"]`); if (!s) continue; const im = new Image(); im.src = typeof v === 'string' ? v : v.src; im.alt = (typeof v === 'object' && v.alt) || s.dataset.alt || ''; s.querySelectorAll(':scope > img').forEach((o) => o.remove()); s.prepend(im); } };
+document.querySelectorAll('[data-slot] img').forEach((i) => { if (i.complete && !i.naturalWidth) i.remove(); else i.addEventListener('error', () => i.remove(), { once: true }); });</script>
+</body>
+</html>
