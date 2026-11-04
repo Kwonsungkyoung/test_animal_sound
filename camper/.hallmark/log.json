@@ -1,0 +1,34 @@
+[
+ {
+  "shape": "Photographic",
+  "theme": "vellum",
+  "axes": "light/blackletter/cool",
+  "hero": "Stage",
+  "nav": "masthead",
+  "footer": "mast",
+  "imagery": "photographs, library 3, warm",
+  "photos": [
+   "Snostskali_Valley,_Mountain_road,_Khevi,_Georgia.jpg",
+   "Herbert_Lake_beim_Icefields_Parkway.jpg",
+   "Zagedan_Ridge,_Camping_tent,_Caucasus_Mountains.jpg"
+  ],
+  "entry": "booking ledger in hero",
+  "fingerprint": "3beb6c",
+  "sections": [
+   "hero",
+   "bleed photo",
+   "switcher",
+   "split steps",
+   "table",
+   "rows close",
+   "footer"
+  ],
+  "signature": "the booking ledger in the hero",
+  "waived": [
+   "81"
+  ],
+  "prompt": "캠핑카 렌트 서비스 업체 홈페이지",
+  "date": "2026-11-04",
+  "mode": "build"
+ }
+]
